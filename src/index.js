@@ -1,5 +1,5 @@
-import { ApolloLink } from 'apollo-link';
-import { getMainDefinition } from 'apollo-utilities';
+import { ApolloLink } from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
 import { assertPreconditions } from './validation';
 import {
   isSuccessfulQuery,

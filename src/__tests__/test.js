@@ -2,7 +2,7 @@ import {
   ApolloLink,
   execute,
   Observable
-} from 'apollo-link';
+} from '@apollo/client';
 import { WatchedMutationLink } from '../index';
 import gql from 'graphql-tag';
 import {
@@ -42,7 +42,7 @@ describe('WatchedMutationLink', () => {
       SaveTodo: { TodoList: () => { called = true; } }
     });
     const mockLink = new ApolloLink(() => Observable.of({
-      data: { users: [{ id: 'foo', name: 'John' }, { id: 'bar', name: 'Adam'} ] }
+      data: { users: [{ id: 'foo', name: 'John' }, { id: 'bar', name: 'Adam' }] }
     }));
     const link = ApolloLink.from([
       watchedMutationLink,
@@ -130,7 +130,7 @@ describe('WatchedMutationLink', () => {
     });
     const mockQueryLink = new ApolloLink(() => Observable.of(sampleSuccessfulQueryResponse));
     const mockMutationLink = new ApolloLink(() => Observable.of({
-      data: { saveUser: { id: 'foo', name: 'Joh' }}
+      data: { saveUser: { id: 'foo', name: 'Joh' } }
     }));
     const queryLink = ApolloLink.from([
       watchedMutationLink,
@@ -272,7 +272,7 @@ describe('WatchedMutationLink', () => {
       }
       const mutationLink = ApolloLink.from([
         watchedMutationLink,
-        new ApolloLink(() => {})
+        new ApolloLink(() => { })
       ]);
 
       execute(mutationLink, {

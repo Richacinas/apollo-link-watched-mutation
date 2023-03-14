@@ -1,7 +1,7 @@
 import {
   getMainDefinition,
   graphQLResultHasError
-} from 'apollo-utilities';
+} from '@apollo/client/utilities';
 
 export const isQuery = operation => operation === 'query';
 export const isMutation = operation => operation === 'mutation';

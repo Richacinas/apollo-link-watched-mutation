@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { ApolloClient } from 'apollo-client';
-import { ApolloLink } from 'apollo-link';
+import { ApolloClient } from '@apollo/client';
+import { ApolloLink } from '@apollo/client';
 import { WatchedMutationLink } from 'apollo-link-watched-mutation';
 import { BatchHttpLink } from 'apollo-link-batch-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
