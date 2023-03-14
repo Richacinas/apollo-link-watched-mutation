@@ -1,10 +1,11 @@
 import {
   ApolloLink,
   execute,
-  Observable
-} from '@apollo/client';
+  Observable,
+  gql
+} from '@apollo/client/core';
 import { WatchedMutationLink } from '../index';
-import gql from 'graphql-tag';
+
 import {
   sampleSuccessfulQueryResponse,
   sampleErrorQueryResponse,
@@ -262,27 +263,33 @@ describe('WatchedMutationLink', () => {
         expect(todoListQueriesToUpdate.length).toBe(1);
         expect(todoListQueriesToUpdate[0].variables).toMatchObject({ status: 'DONE' });
         expect(called).toBe(false);
-      });
 
-      // mock what should be stored in apollo's cache after a successful query
-      watchedMutationLink.cache.read = cacheKey => {
-        if (JSON.stringify(cacheKey) === JSON.stringify(query)) {
-          return sampleSuccessfulQueryResponse;
-        }
-      }
-      const mutationLink = ApolloLink.from([
-        watchedMutationLink,
-        new ApolloLink(() => { })
-      ]);
+        
+        // mock the contents of the query manager
+        watchedMutationLink.queryManager.addQuery('TodoList', query);      
 
-      execute(mutationLink, {
-        ...mutation,
-        context: {
-          optimisticResponse: { ...sampleSuccessfulMutationResponse.data }
-        }
+        // mock what should be stored in apollo's cache after a successful query
+        watchedMutationLink.cache.read = cacheKey => {
+          if (JSON.stringify(cacheKey) === JSON.stringify(query)) {
+            return sampleSuccessfulQueryResponse;
+          }
+        };
+
+        const mutationLink = ApolloLink.from([
+          watchedMutationLink,
+          new ApolloLink(() => {})
+        ]);
+
+        execute(mutationLink, {
+          ...mutation,
+          context: {
+            optimisticResponse: { ...sampleSuccessfulMutationResponse.data }
+          }
+        });
+
+        expect(called).toBe(true);
+        done();
       });
-      expect(called).toBe(true);
-      done();
     });
   })
 });
