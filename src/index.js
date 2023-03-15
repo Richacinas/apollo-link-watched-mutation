@@ -1,4 +1,4 @@
-import { ApolloLink } from '@apollo/client';
+import { ApolloLink } from '@apollo/client/core';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { assertPreconditions } from './validation';
 import {
