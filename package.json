@@ -1,6 +1,6 @@
 {
-  "name": "apollo-link-watched-mutation",
-  "version": "0.2.4",
+  "name": "@kiwee/apollo-link-watched-mutation",
+  "version": "1.0.0",
   "description": "An interface for providing default updates for mutation - query pairings",
   "keywords": [
     "apollo",
@@ -8,40 +8,37 @@
     "graphql",
     "redux"
   ],
+  "homepage": "https://github.com/KiweeEu/apollo-link-watched-mutation#readme",
+  "bugs": "https://github.com/KiweeEu/apollo-link-watched-mutation/issues",
   "license": "MIT",
   "author": {
     "name": "John Haytko",
     "email": "johnhaytko@gmail.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/haytko/apollo-link-watched-mutation.git"
-  },
-  "bugs": "https://github.com/haytko/apollo-link-watched-mutation/issues",
+  "contributors": [
+    {
+      "name": "Serhii Korzh",
+      "email": "serhii.korzh@kiwee.eu",
+      "url": "https://kiwee.eu"
+    }
+  ],
   "files": [
     "lib"
   ],
   "main": "./lib/main/index.js",
-  "module": "./src/module/index.js",
-  "browserslist": "> 1%",
+  "module": "./lib/module/index.js",
+  "repository": "github:KiweeEu/apollo-link-watched-mutation",
   "scripts": {
+    "prepublishOnly": "npm test && npm run clean && npm run build",
     "clean": "rimraf lib/*",
     "build:main": "babel src -d lib/main --config-file ./babel.main.json",
     "build:module": "babel src -d lib/module --config-file ./babel.module.json",
     "build": "npm run build:main && npm run build:module",
-    "prepublishOnly": "npm test && npm run clean && npm run build",
     "test": "jest"
-  },
-  "jest": {
-    "testRegex": "(/__tests__/.*(test))\\.js$"
   },
   "dependencies": {
     "@apollo/client": "^3.0.0",
     "@babel/runtime": "^7.21.0"
-  },
-  "peerDependencies": {
-    "@apollo/client": "^3.0.0",
-    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
@@ -54,5 +51,13 @@
     "graphql": "^16.6.0",
     "jest": "^29.5.0",
     "rimraf": "^4.4.0"
+  },
+  "peerDependencies": {
+    "@apollo/client": "^3.0.0",
+    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
+  },
+  "browserslist": "> 1%",
+  "jest": {
+    "testRegex": "(/__tests__/.*(test))\\.js$"
   }
 }
