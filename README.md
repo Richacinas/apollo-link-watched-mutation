@@ -1,19 +1,25 @@
-# apollo-link-watched-mutation ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+# apollo-link-watched-mutation ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
 A Link interface for providing default cache updates based on { mutation : query } relationships
 
-### Setup
+This is a maintained fork of [afafafafafaf/apollo-link-watched-mutation](https://github.com/afafafafafaf/apollo-link-watched-mutation).
+
+## Setup
 
 ```bash
-npm i -S apollo-link-watched-mutation
+npm i @kiwee/apollo-link-watched-mutation
 ```
 
 (peer dependencies)
 ```bash
-npm i -S apollo-link graphql
+# works with @apollo/client 3 and graphql 14, 15, 16
+npm i @apollo/client graphql
 ```
 
 ## Why does this package exist?
+
 ### Background
+
 Easy [client-side caching](https://www.apollographql.com/docs/react/basics/caching.html) is one of the many reasons the [Apollo Client](https://www.apollographql.com/docs/react/) has gained so much popularity.
 
 One of the best features of the apollo-client is the idea of automatic cache updates. Since the apollo-client handles your networking for you, it can inspect traffic and update its cache in-place if it ever sees an updated version of a cached value in a response.
@@ -41,6 +47,7 @@ update: (proxy, { data: { createTodo } }) => {
 ```
 
 ### The Link pattern for default cache updates
+
 With [Apollo-Client 2.0](https://dev-blog.apollodata.com/apollo-client-2-0-5c8d0affcec7) the Apollo team introduced the idea of [Apollo Links](https://www.apollographql.com/docs/link/) which provides a configurable way to compose your network stack. Apollo Links have access to the same network traffic that made Watched Queries possible and that means we can watch that same traffic and provide additional default update behavior to our cache.
 
 ```javascript
@@ -57,7 +64,10 @@ By adding this WatchedMutationLink to our networking stack, the exported apollo-
 
 By monitoring networking traffic, the Link figures out when you may want to update your cache based off a mutation and query and you determine how it should update all in one place.
 
-#### Example usage
+## Example usage
+
+NOTE: the examples haven't been updated to the newest version of the package.
+
 The WatchedMutationLink below would manage any # of cached *TodoList*s after any successful *SaveTodo* mutation (including optimistic mutations & any reversions due to an error) by determining whether or not the mutatedTodo remains relevant on the list and updating the cache if necessary.
 ```graphql
 query TodoList($status: String) {
@@ -126,7 +136,7 @@ const client = new ApolloClient({ link, cache });
 export default client;
 ```
 
-### Tests
+## Tests
 
 ```bash
 npm test
