@@ -1,5 +1,5 @@
 {
-  "name": "@kiwee/apollo-link-watched-mutation",
+  "name": "Richacinas/apollo-link-watched-mutation",
   "version": "1.0.0",
   "description": "An interface for providing default updates for mutation - query pairings",
   "keywords": [
@@ -8,8 +8,8 @@
     "graphql",
     "redux"
   ],
-  "homepage": "https://github.com/KiweeEu/apollo-link-watched-mutation#readme",
-  "bugs": "https://github.com/KiweeEu/apollo-link-watched-mutation/issues",
+  "homepage": "https://github.com/Richacinas/apollo-link-watched-mutation#readme",
+  "bugs": "https://github.com/Richacinas/apollo-link-watched-mutation/issues",
   "license": "MIT",
   "author": {
     "name": "John Haytko",
@@ -17,9 +17,8 @@
   },
   "contributors": [
     {
-      "name": "Serhii Korzh",
-      "email": "serhii.korzh@kiwee.eu",
-      "url": "https://kiwee.eu"
+      "name": "Ricardo Martínez",
+      "email": "rmartrenado@gmail.com"
     }
   ],
   "files": [
@@ -27,7 +26,7 @@
   ],
   "main": "./lib/main/index.js",
   "module": "./lib/module/index.js",
-  "repository": "github:KiweeEu/apollo-link-watched-mutation",
+  "repository": "github:Richacinas/apollo-link-watched-mutation",
   "scripts": {
     "prepublishOnly": "npm test && npm run clean && npm run build",
     "clean": "rimraf lib/*",
