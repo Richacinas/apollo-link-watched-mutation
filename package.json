@@ -28,6 +28,7 @@
   "module": "./lib/module/index.js",
   "repository": "github:Richacinas/apollo-link-watched-mutation",
   "scripts": {
+    "prepare": "npm run build",
     "prepublishOnly": "npm run clean && npm run build",
     "clean": "rimraf lib/*",
     "build:main": "babel src -d lib/main --config-file ./babel.main.json",
