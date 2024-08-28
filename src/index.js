@@ -63,7 +63,7 @@ export class WatchedMutationLink extends ApolloLink {
 
   getUpdateAfterMutation = (mutationOperation, mutationData, queryKey) => {
     const queryName = getQueryName(queryKey.query);
-    const cachedQueryData = this.cache.read(queryKey);
+    const cachedQueryData = this.cache.read({ ...queryKey, returnPartialData: true });
     if (!cachedQueryData) {
       // we failed reading from the cache so there's nothing to update
       // probably it was invalidated outside of this link, we should remove it from our queries to update
@@ -114,7 +114,7 @@ export class WatchedMutationLink extends ApolloLink {
   addOptimisticRequest = (operationName) => {
     const cachedQueryToUpdateKeys = this.getCachedQueryKeysToUpdate(operationName);
     cachedQueryToUpdateKeys.forEach(queryKey => {
-      const currentCachedState = this.cache.read(queryKey);
+      const currentCachedState = this.cache.read({ ...queryKey, returnPartialData: true });
       this.inflightOptimisticRequests.set(queryKey, currentCachedState);
       this.debugLog({
         message: 'Added a cached optimistic query in case we need to revert it after an optimistic error',
